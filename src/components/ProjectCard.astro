@@ -1,0 +1,42 @@
+---
+import { LinkIcon } from "@lucide/astro";
+import GitHubIcon from "../assets/svg/GitHubIcon.astro";
+import ButtonLinks from "./ButtonLinks.astro";
+
+const { title, img, description, technologies, github, vercel } = Astro.props;
+---
+
+<article
+    class="sm:gap-2 gap-1 h-auto flex  flex-wrap sm:flex-row justify-end items-center md:px-2 relative  md:h-72 p-4 group overflow-hidden backdrop-blur-md bg-zinc-50/5 hover:bg-zinc-200/10 rounded-md border border-zinc-100/20 hover:border-zinc-100/80 transition-all ease-in-out delay-75"
+>
+    <img
+        class="object-cover md:w-1/2 w-60 sm:w-72 left-2 top-1 sm:-top-1 absolute md:-top-6 group-hover:scale-105 group-hover:-rotate-5 transition-all ease-in-out delay-75"
+        src=`${img}`
+        alt="proyecto e-commerce con react"
+    />
+    <div class="w-1/2 pl-2  h-auto flex flex-col gap-1 md:gap-4 ">
+        <h3 class="text-zinc-100 font-semibold text-base sm:text-xl md:text-4xl">
+            {title}
+        </h3>
+         <ul class="flex flex-wrap gap-1 sm:gap-2">
+            {
+                technologies.map((t: string) => {
+                    return <li class="text-xs md:sm bg-zinc-700 rounded-2xl px-2 py-1">{t}</li>;
+                })
+            }
+        </ul>
+
+        <p class="text-sm sm:text-sm md:text-xl">{description}</p>
+
+       
+        <div class="flex gap-2">
+
+            <ButtonLinks href={github} title="GitHub">
+                <GitHubIcon class="size-4" />
+            </ButtonLinks>
+            <ButtonLinks href={vercel} title="Preview">
+                <LinkIcon class="size-4" />
+            </ButtonLinks>
+        </div>
+    </div>
+</article>

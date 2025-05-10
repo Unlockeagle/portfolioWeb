@@ -1,0 +1,50 @@
+---
+import ButtonLinks from "./ButtonLinks.astro";
+
+import GitHubIcon from "../assets/svg/GitHubIcon.astro";
+import LinkedinIcon from "../assets/svg/LinkedinIcon.astro";
+
+import { MailIcon } from "@lucide/astro";
+---
+
+<div class="px-2 mt-20 flex flex-col items-center gap-4">
+    <div
+        class="flex flex-col md:flex-row justify-center items-center md:items-end-safe gap-4 md:gap-8 text-center"
+    >
+        <img
+            class="rounded-full w-42 md:w-52 h-auto"
+            src="/profile_200px.avif"
+            alt="Profile Photo Yoan Santiago"
+        />
+        <div class="flex flex-col text-center md:text-start md:w-1/2 gap-2">
+            <h1 class="text-4xl font-bold">Yoan Santiago</h1>
+            <h2 class="text-xl text-zinc-200 text-balance">
+                Soy un <span class="text-yellow-300">desarrollador web full stack</span> me
+                encanta crear experiencias digitales sólidas y atractivas.
+            </h2>
+
+            <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                <ButtonLinks href="https://github.com/Unlockeagle" title="GitHub">
+                    <GitHubIcon class="size-5" />
+                </ButtonLinks>
+                <ButtonLinks
+                    href="https://www.linkedin.com/in/yoan-santigo-06327ba7/"
+                    title="LinkedIn"
+                >
+                    <LinkedinIcon class="size-5" />
+                </ButtonLinks>
+                <ButtonLinks
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=santiagodev.web@gmail.com&su=Asunto:%20contacto%20Santiago_dev_web&body=Hola,%20escribe%20aquí%20tu%20mensaje."
+                    title="santiagodev.web@gmail.com"
+                >
+                    <MailIcon class="size-5" />
+                </ButtonLinks>
+                <a
+                    class="flex gap-1 text-sm bg-purple-900 px-4 py-2 rounded-4xl cursor-pointer items-center hover:border border-amber-50"
+                    href="./YoanSantiagoCv.pdf"
+                    download="">CV</a
+                >
+            </div>
+        </div>
+    </div>
+</div>

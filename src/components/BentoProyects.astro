@@ -1,0 +1,21 @@
+---
+import SectionComponent from "./SectionComponent.astro";
+import ProjectCard from "./ProjectCard.astro";
+
+import { getCollection, getEntry } from "astro:content";
+
+const allProjects = await getCollection("projects");
+---
+
+<SectionComponent title="Proyectos">
+    {
+        allProjects.map((project) => {
+            const { slug, data, body } = project;
+            const { title, description, img, technologies, github, vercel } = data;
+           
+            
+
+            return <ProjectCard title={title} img={img} description={description} technologies={technologies} github={github} vercel={vercel} />;
+        })
+    }
+</SectionComponent>
