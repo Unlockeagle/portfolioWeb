@@ -3,7 +3,7 @@ const { href } = Astro.props;
 ---
 
 <li
-    class="cursor-pointer text-sm  px-4 py-2 rounded-4xl text-center items-center align-middle hover:bg-purple-900 border border-transparent hover:border hover:border-amber-50  font-semibold transition-all delay-75"
+    class="cursor-pointer text-sm  px-4 py-2 rounded-4xl text-center items-center align-middle hover:bg-purple-900 outline-1 outline-transparent hover:outline-1 hover:outline-amber-50  font-semibold transition-all delay-75"
 >
     <a href={href} {...Astro.props}>
         <slot />
