@@ -15,13 +15,13 @@ const { title, img, description, technologies, github, vercel } = Astro.props;
         alt="proyecto e-commerce con react"
     />
     <div class="sm:w-1/2 pl-2  h-auto flex flex-col gap-1 md:gap-4 ">
-        <h3 class="text-zinc-100 font-semibold text-base sm:text-xl md:text-4xl">
+        <h3 class="dark:text-zinc-100 font-semibold text-base sm:text-xl md:text-4xl">
             {title}
         </h3>
          <ul class="flex flex-wrap gap-1 sm:gap-2">
             {
                 technologies.map((t: string) => {
-                    return <li class="text-xs md:sm bg-zinc-700 rounded-2xl px-2 py-1">{t}</li>;
+                    return <li class="text-xs md:sm text-zinc-100 bg-gradient-to-b from-violet-400 to-violet-800  rounded-2xl px-2 py-1">{t}</li>;
                 })
             }
         </ul>

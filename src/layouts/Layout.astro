@@ -10,12 +10,13 @@ import "../styles/global.css";
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
+        
         <title>Astro Basics</title>
     </head>
-    <body class="relative text-black dark:text-zinc-100 flex flex-col gap-8 md:gap-16">
+    <body class="relative text-zinc-800 dark:text-zinc-100 flex flex-col gap-8 md:gap-16">
         <NavBar />
         <div
-            class="fixed inset-0 -z-20 min-h-screen w-full [background:radial-gradient(125%_125%_at_50%_10%,#0d0d0d_60%,#7f00b2_140%)]"
+            class="fixed inset-0 -z-20 min-h-screen w-full [background:radial-gradient(125%_125%_at_50%_10%,#fafafa_60%,#7f00b2_140%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#0d0d0d_60%,#7f00b2_140%)]"
         >
         </div>
         <slot />
