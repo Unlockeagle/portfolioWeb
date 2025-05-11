@@ -7,14 +7,14 @@ const { title, img, description, technologies, github, vercel } = Astro.props;
 ---
 
 <article
-    class="sm:gap-2 gap-1 h-auto flex  flex-wrap sm:flex-row justify-end items-center md:px-2 relative  md:h-72 p-4 group overflow-hidden backdrop-blur-md bg-zinc-50/5 hover:bg-zinc-200/10 rounded-md border border-zinc-100/20 hover:border-zinc-100/80 transition-all ease-in-out delay-75"
+    class="sm:gap-2 gap-1 h-auto flex  flex-wrap sm:flex-row justify-center sm:justify-end items-center md:px-2 relative  md:h-72 p-4 group overflow-hidden backdrop-blur-md bg-zinc-50/5 hover:bg-zinc-200/10 rounded-md border border-zinc-100/20 hover:border-zinc-100/80 transition-all ease-in-out delay-75"
 >
     <img
-        class="object-cover md:w-1/2 w-60 sm:w-72 left-2 top-1 sm:-top-1 absolute md:-top-6 group-hover:scale-105 group-hover:-rotate-5 transition-all ease-in-out delay-75"
+        class="object-cover md:w-1/2 w-52 sm:w-72 left-2  sm:-top-1 sm:absolute md:-top-6 group-hover:scale-105 group-hover:-rotate-5 transition-all ease-in-out delay-75"
         src=`${img}`
         alt="proyecto e-commerce con react"
     />
-    <div class="w-1/2 pl-2  h-auto flex flex-col gap-1 md:gap-4 ">
+    <div class="sm:w-1/2 pl-2  h-auto flex flex-col gap-1 md:gap-4 ">
         <h3 class="text-zinc-100 font-semibold text-base sm:text-xl md:text-4xl">
             {title}
         </h3>
