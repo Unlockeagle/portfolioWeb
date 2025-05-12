@@ -1,4 +1,5 @@
 ---
+import Footer from "../components/Footer.astro";
 import NavBar from "../components/NavBar.astro";
 import "../styles/global.css";
 ---
@@ -20,6 +21,7 @@ import "../styles/global.css";
         >
         </div>
         <slot />
+        	<Footer/>
     </body>
 </html>
 
@@ -31,6 +33,7 @@ import "../styles/global.css";
         margin: 0;
         width: 100%;
         height: 100%;
+        scroll-behavior: smooth;
         
     }
 </style>

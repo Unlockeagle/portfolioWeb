@@ -1,6 +1,6 @@
 ---
 title: "Sistema de inventarios"
-technologies: ["JavaScript", "Tailwind", "Firebase", "HTML", "CSS", ]
+technologies: ["JavaScript", "Tailwind", "HTML", "CSS", ]
 description: "Desarrollado con javaScript vanilla y localStorage"
 img: "sistema-de-inventarios.webp"
 github: "https://github.com/Unlockeagle/PreEntrega3-SantiagoYoan-js"

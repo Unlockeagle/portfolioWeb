@@ -7,7 +7,7 @@ const { title, img, description, technologies, github, vercel } = Astro.props;
 ---
 
 <article
-    class="sm:gap-2 gap-1 h-auto flex  flex-wrap sm:flex-row justify-center sm:justify-end items-center md:px-2 relative  md:h-72 p-4 group overflow-hidden backdrop-blur-md bg-zinc-50/5 hover:bg-zinc-200/10 rounded-md border light:border-zinc-800 dark:border-zinc-100/20 hover:border-zinc-100/80 transition-all ease-in-out delay-75"
+    class="sm:gap-2 gap-1 h-auto flex  flex-wrap sm:flex-row justify-center sm:justify-end items-center md:px-2 relative  md:h-72 p-4 group overflow-hidden backdrop-blur-md bg-zinc-50/5 hover:bg-zinc-200/10 rounded-md border hover:border-zinc-800/80 border-zinc-800/50 dark:border-zinc-100/20 dark:hover:border-zinc-100/80 transition-all ease-in-out delay-75"
 >
     <img
         class="object-cover md:w-1/2 w-52 sm:w-72 left-2  sm:-top-1 sm:absolute md:-top-6 group-hover:scale-105 group-hover:-rotate-5 transition-all ease-in-out delay-75"
@@ -21,7 +21,7 @@ const { title, img, description, technologies, github, vercel } = Astro.props;
          <ul class="flex flex-wrap gap-1 sm:gap-2">
             {
                 technologies.map((t: string) => {
-                    return <li class="text-xs md:sm dark:text-zinc-100 outline-1 outline-violet-800  rounded-2xl px-2 py-1">{t}</li>;
+                    return <li class="text-xs md:sm dark:text-zinc-100 border-1 border-violet-800  rounded-2xl px-2 py-1">{t}</li>;
                 })
             }
         </ul>

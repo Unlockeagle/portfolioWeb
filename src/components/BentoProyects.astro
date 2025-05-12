@@ -7,7 +7,7 @@ import { getCollection, getEntry } from "astro:content";
 const allProjects = await getCollection("projects");
 ---
 
-<SectionComponent title="Proyectos">
+<SectionComponent title="Proyectos" icon={true}>
     {
         allProjects.map((project) => {
             const { slug, data, body } = project;
