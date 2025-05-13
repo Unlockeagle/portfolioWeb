@@ -13,6 +13,7 @@
     "@lucide/astro": "^0.509.0",
     "@tailwindcss/vite": "^4.1.6",
     "astro": "^5.7.12",
+    "pnpm": "^10.11.0",
     "tailwindcss": "^4.1.6"
   }
 }

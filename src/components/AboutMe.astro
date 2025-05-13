@@ -1,15 +1,41 @@
 ---
+import ButtonLinks from "./ButtonLinks.astro";
+import MailIcon from "./icons/Mail-icon.astro";
 import SectionComponent from "./SectionComponent.astro";
-
-
+const stack = [
+    "JavaScrip",
+    "ReactJs",
+    "Node.js",
+    "ExpressJS",
+    "MongoDB",
+    "Tailwind CSS",
+    "Bootstrap",
+    "SASS",
+    "Html",
+    "CSS",
+];
 ---
 
-
 <SectionComponent title="Sobre mi" icon={true}>
-    <span class=""
-            >Trabajo con tecnologías como React, Node.js y Tailwind CSS para construir
-            interfaces modernas y sistemas backend eficientes. Me gusta combinar código
-            limpio con diseño funcional.
-            </span>
-</SectionComponent>
+    <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6">
+        <p class="md:w-2/3 text-xl">
+            Trabajo con tecnologías como {stack.map((s) => s + ", ")} para construir interfaces
+            modernas y sistemas backend eficientes. Me gusta combinar código limpio con diseño
+            funcional.
+        </p>
 
+        <div class="flex flex-col gap-4 md:gap-10">
+            <img
+                class="w-52 md:w-60 h-auto"
+                src="/SantiagoDev.png"
+                alt="Santiago Dev animado "
+            />
+            <ButtonLinks
+                href="mailto:santiagodev.web@gmail.com"
+                title="Contácteme"
+            >
+                <MailIcon class="size-5" />
+            </ButtonLinks>
+        </div>
+    </div>
+</SectionComponent>

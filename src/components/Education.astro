@@ -3,6 +3,64 @@ import SectionComponent from "./SectionComponent.astro";
 ---
 
 <SectionComponent title="Formación" icon={true}>
+    <details open>
+        <summary> TypeScript - Fernando Herrera Udemy </summary>
+        <ul>
+            <li>Tipos básicos</li>
+            <li>Funciones y objetos</li>
+            <li>Objetos y tipos personalizados en TypeScript</li>
+            <li>Depuración de Errors y el archivo tsconfig,json</li>
+            <li>Características de ES6 - JS2015 disponibles en TypeScript</li>
+            <li>Clases en TypeScript</li>
+            <li>Interfaces</li>
+            <li>NameSpaces</li>
+            <li>Genéricos - Generics</li>
+            <li>Decoradores</li>
+            <li>Usar librerías que no están escritas en TypeScript</li>
+        </ul>
+    </details>
+    <details class="detailClass">
+        <summary>
+            Programación Backend (III): Testing y Escalabilidad - CoderHouse
+        </summary>
+        <ul>
+            <li>Realizar pruebas y monitoreo de aplicaciones REST.</li>
+            <li>
+                Implementar estrategias de optimización, incluyendo normalización, Gzip y
+                manejo de logs.
+            </li>
+            <li>Manejar la gestión de versiones y paquetes en entornos Node.js.</li>
+            <li>
+                Configurar y asegurar aplicaciones, enfocándote en la seguridad del
+                backend.
+            </li>
+            <li>Desarrollar pruebas unitarias y pruebas avanzadas de funcionalidades.</li>
+            <li>
+                Utilizar y comprender el funcionamiento de Clusters para la escalabilidad.
+            </li>
+            <li>Aplicar prácticas de desarrollo con frameworks como NEST.</li>
+            <li>Documentar APIs REST de manera efectiva con Swagger.</li>
+        </ul>
+    </details>
+    <details>
+        <summary>
+            Programación Backend II: Diseño y Arquitectura Backend - CoderHouse
+        </summary>
+        <ul>
+            <li>Utilizar framework Express.</li>
+            <li>Utilizar mongoose.</li>
+            <li>Implementar sistemas de autenticación y autorización.</li>
+            <li>Usar el framework Handlebars para manejar plantillas HTML.</li>
+            <li>Crear APIs con RESTFul.</li>
+            <li>Testear y monitorear aplicaciones REST.</li>
+            <li>Normalizar/denormalizar datos en formato JSON.</li>
+            <li>
+                Manejar patrones de diseño y code style para aplicaciones de alta
+                concurrencia.
+            </li>
+            <li>Diseñar servidores web desarrollando en capas con MVC.</li>
+        </ul>
+    </details>
     <details>
         <summary
             >Programación Backend I: Desarrollo Avanzado de Backend - CoderHouse</summary
@@ -31,66 +89,77 @@ import SectionComponent from "./SectionComponent.astro";
             </li>
         </ul>
     </details>
-        <details>
-            <summary>React Js - CoderHouse</summary>
+    <details>
+        <summary>React Js - CoderHouse</summary>
 
-            <ul class="flex flex-col">
-                <li>Crear desde cero SPA, haciendo foco en las interfaces de usuario.</li>
-                <li>Javascript, JS y ES6.</li>
-                <li>Desarrollar aplicaciones web en JavaScript utilizando ReactJS.</li>
-                <li>Diseñar soluciones web rápidas, escalables, flexibles y potentes.</li>
-                <li>Manejo de rutas utilizando Firebase.</li>
-                <li>
-                    Aplicar los conocimientos del lenguaje a otras librerías y frameworks
-                    JavaScript (React, Node, VueJS, etc...)
-                </li>
-                <li>
-                    Comprender paradigmas y patrones de programación empleados en el
-                    desarrollo web.
-                </li>
-            </ul>
-        </details>
-        <details>
-            <summary>JavaScrip - CoderHouse</summary>
+        <ul class="flex flex-col">
+            <li>Crear desde cero SPA, haciendo foco en las interfaces de usuario.</li>
+            <li>Javascript, JS y ES6.</li>
+            <li>Desarrollar aplicaciones web en JavaScript utilizando ReactJS.</li>
+            <li>Diseñar soluciones web rápidas, escalables, flexibles y potentes.</li>
+            <li>Manejo de rutas utilizando Firebase.</li>
+            <li>
+                Aplicar los conocimientos del lenguaje a otras librerías y frameworks
+                JavaScript (React, Node, VueJS, etc...)
+            </li>
+            <li>
+                Comprender paradigmas y patrones de programación empleados en el
+                desarrollo web.
+            </li>
+        </ul>
+    </details>
+    <details>
+        <summary>JavaScrip - CoderHouse</summary>
 
-            <ul class="flex flex-col">
-                <li>
-                    Distinguir sintaxis y casos de aplicación de instrucciones,
-                    estructuras y métodos de JavaScript.
-                </li>
-                <li>Crear páginas y/o secciones web interactivas con JavaScript.</li>
-                <li>
-                    Determinar medio y formato de almacenamiento de datos generados por el
-                    usuario.
-                </li>
-                <li>
-                    Construir soluciones cuyo frontend se comunica con el backend usando
-                    AJAX.
-                </li>
-                <li>
-                    Aplicar los conocimientos del lenguaje a otras librerías y frameworks
-                    JavaScript (React, Node, VueJS, etc.)
-                </li>
-                <li>
-                    Comprender paradigmas y patrones de programación empleados en el
-                    desarrollo web.
-                </li>
-            </ul>
-        </details>
-        <details>
-            <summary>Desarrollo Web - CoderHouse</summary>
+        <ul class="flex flex-col">
+            <li>
+                Distinguir sintaxis y casos de aplicación de instrucciones, estructuras y
+                métodos de JavaScript.
+            </li>
+            <li>Crear páginas y/o secciones web interactivas con JavaScript.</li>
+            <li>
+                Determinar medio y formato de almacenamiento de datos generados por el
+                usuario.
+            </li>
+            <li>
+                Construir soluciones cuyo frontend se comunica con el backend usando AJAX.
+            </li>
+            <li>
+                Aplicar los conocimientos del lenguaje a otras librerías y frameworks
+                JavaScript (React, Node, VueJS, etc.)
+            </li>
+            <li>
+                Comprender paradigmas y patrones de programación empleados en el
+                desarrollo web.
+            </li>
+        </ul>
+    </details>
+    <details>
+        <summary>Desarrollo Web - CoderHouse</summary>
 
-            <ul class="flex flex-col">
-                <li>Prototipar un sitio web.</li>
-                <li>Maquetar una web con HTML y CSS, siguiendo las mejores prácticas.</li>
-                <li>Crear animaciones con CSS.</li>
-                <li>Manejar SASS como preprocesador, y BEM como metodología.</li>
-                <li>Versionar código con GIT y GitHub.</li>
-                <li>Usar herramientas de SEO, y tips de seguridad.</li>
-                <li>Trabajar con Boostrap, y con Material Design.</li>
-                <li>Subir web a un servidor y configurarlo.</li>
-                <li>Presentar presupuestos y entablar negociación con los clientes."</li>
-            </ul>
-        </details>
+        <ul class="">
+            <li>Prototipar un sitio web.</li>
+            <li>Maquetar una web con HTML y CSS, siguiendo las mejores prácticas.</li>
+            <li>Crear animaciones con CSS.</li>
+            <li>Manejar SASS como preprocesador, y BEM como metodología.</li>
+            <li>Versionar código con GIT y GitHub.</li>
+            <li>Usar herramientas de SEO, y tips de seguridad.</li>
+            <li>Trabajar con Boostrap, y con Material Design.</li>
+            <li>Subir web a un servidor y configurarlo.</li>
+            <li>Presentar presupuestos y entablar negociación con los clientes."</li>
+        </ul>
     </details>
 </SectionComponent>
+
+<style>
+    @reference "tailwindcss";
+    details {
+        @apply p-2 md:p-4 backdrop-blur-md bg-zinc-50/5 hover:bg-zinc-200/10 rounded-md border hover:border-zinc-800/80 border-zinc-800/50 dark:border-zinc-100/20 dark:hover:border-zinc-100/80 transition-all ease-in-out delay-75;
+    }
+    details > ul {
+        @apply list-disc text-lg flex-col pl-6 backdrop-blur-md rounded-md py-2;
+    }
+    summary {
+        @apply list-disc text-xl;
+    }
+</style>
