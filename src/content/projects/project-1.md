@@ -3,7 +3,7 @@ title: "React E-commerce"
 technologies: ["React", "Tailwind", "Firebase", "HTML", "CSS", "JavaScript"]
 description: "Desarrollado implementando servicios de google"
 img: "e-commerce-ractjs.webp"
-github: "https://entrega-final-santiago-yoan-react.vercel.app/"
+github: "https://github.com/Unlockeagle/EntregaFinal-SantiagoYoan-React"
 vercel: "https://entrega-final-santiago-yoan-react.vercel.app/"
 ---
 
