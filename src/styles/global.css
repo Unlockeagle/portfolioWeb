@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+.animate-infinite-scroll {
+    animation: infinite infinite-scroll 50s linear;
+    animation-play-state: running;
+}
+@keyframes infinite-scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.group:hover .animate-infinite-scroll {
+    animation-play-state: paused;
+}
