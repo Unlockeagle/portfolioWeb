@@ -3,8 +3,8 @@ import SectionComponent from "./SectionComponent.astro";
 ---
 
 <SectionComponent id="formacion" title="Formación" icon={true}>
-    <details open>
-        <summary> TypeScript - Fernando Herrera Udemy </summary>
+    <details  open>
+        <summary > TypeScript - Fernando Herrera Udemy </summary>
         <ul>
             <li>Tipos básicos</li>
             <li>Funciones y objetos</li>
@@ -160,6 +160,6 @@ import SectionComponent from "./SectionComponent.astro";
         @apply list-disc text-lg flex-col pl-6 backdrop-blur-md rounded-md py-2;
     }
     summary {
-        @apply list-disc text-xl;
+        @apply list-disc text-xl cursor-pointer;
     }
 </style>
