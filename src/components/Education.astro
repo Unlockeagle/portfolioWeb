@@ -1,10 +1,15 @@
 ---
+import type { languageList } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
 import SectionComponent from "./SectionComponent.astro";
+
+const currentLang = Astro.currentLocale || 'es'
+const translateLabels = useTranslations(currentLang as keyof typeof languageList)
 ---
 
-<SectionComponent id="formacion" title="Formación" icon={true}>
-    <details open>
-        <summary> TypeScript - Fernando Herrera Udemy </summary>
+<SectionComponent id="formacion" title={translateLabels('nav.education')} icon={true}>
+    <details class="education-detail" open name="requirements">
+        <summary class="education-summary"> TypeScript - Fernando Herrera Udemy </summary>
         <ul>
             <li>Tipos básicos</li>
             <li>Funciones y objetos</li>
@@ -19,8 +24,8 @@ import SectionComponent from "./SectionComponent.astro";
             <li>Usar librerías que no están escritas en TypeScript</li>
         </ul>
     </details>
-    <details class="detailClass">
-        <summary>
+    <details class="education-detail" name="requirements">
+        <summary class="education-summary">
             Programación Backend (III): Testing y Escalabilidad - CoderHouse
         </summary>
         <ul>
@@ -42,8 +47,8 @@ import SectionComponent from "./SectionComponent.astro";
             <li>Documentar APIs REST de manera efectiva con Swagger.</li>
         </ul>
     </details>
-    <details>
-        <summary>
+    <details class="education-detail" name="requirements">
+        <summary class="education-summary">
             Programación Backend II: Diseño y Arquitectura Backend - CoderHouse
         </summary>
         <ul>
@@ -61,8 +66,8 @@ import SectionComponent from "./SectionComponent.astro";
             <li>Diseñar servidores web desarrollando en capas con MVC.</li>
         </ul>
     </details>
-    <details>
-        <summary
+    <details class="education-detail" name="requirements">
+        <summary class="education-summary"
             >Programación Backend I: Desarrollo Avanzado de Backend - CoderHouse</summary
         >
 
@@ -89,8 +94,8 @@ import SectionComponent from "./SectionComponent.astro";
             </li>
         </ul>
     </details>
-    <details>
-        <summary>React Js - CoderHouse</summary>
+    <details class="education-detail" name="requirements">
+        <summary class="education-summary">React Js - CoderHouse</summary>
 
         <ul class="flex flex-col">
             <li>Crear desde cero SPA, haciendo foco en las interfaces de usuario.</li>
@@ -108,8 +113,8 @@ import SectionComponent from "./SectionComponent.astro";
             </li>
         </ul>
     </details>
-    <details>
-        <summary>JavaScrip - CoderHouse</summary>
+    <details class="education-detail" name="requirements">
+        <summary class="education-summary">JavaScrip - CoderHouse</summary>
 
         <ul class="flex flex-col">
             <li>
@@ -134,8 +139,8 @@ import SectionComponent from "./SectionComponent.astro";
             </li>
         </ul>
     </details>
-    <details>
-        <summary>Desarrollo Web - CoderHouse</summary>
+    <details class="education-detail" name="requirements">
+        <summary class="education-summary">Desarrollo Web - CoderHouse</summary>
 
         <ul class="">
             <li>Prototipar un sitio web.</li>
@@ -153,13 +158,111 @@ import SectionComponent from "./SectionComponent.astro";
 
 <style>
     @reference "tailwindcss";
-    details {
-        @apply p-2 md:p-4 backdrop-blur-md bg-zinc-50/5 hover:bg-zinc-200/10 rounded-md border hover:border-zinc-800/80 border-zinc-800/50 dark:border-zinc-100/20 dark:hover:border-zinc-100/80 transition-all ease-in-out delay-75;
+    
+    /* Estilo base para details */
+    .education-detail {
+        @apply p-2 md:p-4 backdrop-blur-md bg-zinc-50/5 hover:bg-zinc-200/10 rounded-md border border-zinc-800/50 dark:border-zinc-100/20 transition-all ease-in-out duration-300;
+        cursor: pointer;
+        overflow: hidden;
     }
-    details > ul {
+    
+    .education-detail:hover {
+        @apply border-zinc-800/80 dark:border-zinc-100/80;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Estilo para el summary con animación del indicador */
+    .education-summary {
+        @apply list-none text-xl relative pl-8 py-2 transition-all duration-300;
+        cursor: pointer;
+    }
+    
+    /* Indicador personalizado (flecha) */
+    .education-summary::before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        color: rgb(168 85 247); /* purple-500 */
+        font-size: 0.8em;
+    }
+    
+    /* Flecha rotada cuando está abierto */
+    .education-detail[open] .education-summary::before {
+        transform: translateY(-50%) rotate(90deg);
+    }
+    
+    /* Hover effect en el summary */
+    .education-summary:hover {
+        @apply text-purple-400;
+        padding-left: 2.5rem;
+    }
+    
+    /* Animación del contenido */
+    .education-detail > ul {
         @apply list-disc text-lg flex-col pl-6 backdrop-blur-md rounded-md py-2;
+        animation: fadeInDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: top;
     }
-    summary {
-        @apply list-disc text-xl;
+    
+    /* Keyframes para la animación de contenido */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px) scaleY(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scaleY(1);
+        }
+    }
+    
+    /* Transición suave cuando se cierra */
+    .education-detail:not([open]) {
+        max-height: auto;
+    }
+    
+    /* Efecto adicional para elementos de lista */
+    .education-detail > ul > li {
+        @apply transition-all duration-200;
+        animation: slideInLeft 0.3s ease-out;
+        animation-fill-mode: both;
+    }
+    
+    /* Delay escalonado para los elementos de lista */
+    .education-detail > ul > li:nth-child(1) { animation-delay: 0.1s; }
+    .education-detail > ul > li:nth-child(2) { animation-delay: 0.15s; }
+    .education-detail > ul > li:nth-child(3) { animation-delay: 0.2s; }
+    .education-detail > ul > li:nth-child(4) { animation-delay: 0.25s; }
+    .education-detail > ul > li:nth-child(5) { animation-delay: 0.3s; }
+    .education-detail > ul > li:nth-child(6) { animation-delay: 0.35s; }
+    .education-detail > ul > li:nth-child(7) { animation-delay: 0.4s; }
+    .education-detail > ul > li:nth-child(8) { animation-delay: 0.45s; }
+    .education-detail > ul > li:nth-child(9) { animation-delay: 0.5s; }
+    .education-detail > ul > li:nth-child(10) { animation-delay: 0.55s; }
+    .education-detail > ul > li:nth-child(11) { animation-delay: 0.6s; }
+    .education-detail > ul > li:nth-child(12) { animation-delay: 0.65s; }
+    .education-detail > ul > li:nth-child(13) { animation-delay: 0.7s; }
+    .education-detail > ul > li:nth-child(14) { animation-delay: 0.75s; }
+    
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    /* Efecto hover en los items de lista */
+    .education-detail > ul > li:hover {
+        @apply text-purple-300;
+        transform: translateX(5px);
+        padding-left: 0.5rem;
     }
 </style>

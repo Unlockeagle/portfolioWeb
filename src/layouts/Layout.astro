@@ -1,39 +1,44 @@
 ---
+import { websiteSchema } from "../schemas/website.ts";
 import Footer from "../components/Footer.astro";
 import NavBar from "../components/NavBar.astro";
 import "../styles/global.css";
+import { personSchema } from "../schemas/person";
+const currentLang = Astro.currentLocale || "es";
 ---
 
 <!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
-        <meta name="generator" content={Astro.generator} />
-        
-        <title>Santiago Dev</title>
-    </head>
-    <body class="relative text-zinc-800 dark:text-zinc-100 flex flex-col gap-8 md:gap-16">
-        <NavBar />
-        <div
-            class="fixed inset-0 -z-20 min-h-screen w-full [background:radial-gradient(125%_125%_at_50%_10%,#fafafa_60%,#7f00b2_140%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#0d0d0d_60%,#7f00b2_140%)]"
-        >
-        </div>
-        <slot />
-        	<Footer/>
-    </body>
+<html lang={currentLang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.webp" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>Santiago Dev</title>
+
+		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+	</head>
+	<body class="relative text-zinc-800 dark:text-zinc-100 flex flex-col gap-8 md:gap-16">
+		<NavBar />
+		<div
+			class="fixed inset-0 -z-20 min-h-screen w-full [background:radial-gradient(125%_125%_at_50%_10%,#fafafa_60%,#7f00b2_140%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,#0d0d0d_60%,#7f00b2_140%)]"
+		>
+		</div>
+		<slot />
+		<Footer />
+	</body>
 </html>
 
 <style>
-    html,
-    body {
-        color-scheme: dark ligth;
-        font-family: "Jost", sans-serif;
-        margin: 0;
-        width: 100%;
-        height: 100%;
-        scroll-behavior: smooth;
-        
-    }
+	html,
+	body {
+		color-scheme: dark ligth;
+		font-family: "Jost", sans-serif;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		scroll-behavior: smooth;
+	}
 </style>

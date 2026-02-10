@@ -1,4 +1,10 @@
 ---
+import type { languageList } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+const currentLang = Astro.currentLocale || 'es';
+
+const translateLabels = useTranslations(currentLang as keyof typeof languageList)
+
 import ButtonList from "./ButtonList.astro";
 ---
 
@@ -6,9 +12,9 @@ import ButtonList from "./ButtonList.astro";
     <ul
         class="flex justify-center gap-1 md:gap-4 h-14 align-middle items-center max-w-full bg-zinc-500/30 dark:bg-zinc-100/5 backdrop-blur-md"
     >
-        <ButtonList href="#">Inicio</ButtonList>
-        <ButtonList href="#projects">Proyectos</ButtonList>
-        <ButtonList href="#about">Sobre mi</ButtonList>
-        <ButtonList href="#formacion">Formación</ButtonList>
+        <ButtonList href="#">{translateLabels('nav.home')}</ButtonList>
+        <ButtonList href="#projects">{translateLabels('nav.projects')}</ButtonList>
+        <ButtonList href="#about">{translateLabels('nav.about')}</ButtonList>
+        <ButtonList href="#formacion">{translateLabels('nav.education')}</ButtonList>
     </ul>
 </header>

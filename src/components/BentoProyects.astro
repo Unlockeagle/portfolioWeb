@@ -5,9 +5,14 @@ import ProjectCard from "./ProjectCard.astro";
 import { getCollection, getEntry } from "astro:content";
 
 const allProjects = await getCollection("projects");
+import type { languageList } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+
+const currentLang = Astro.currentLocale || 'es'
+const translateLabels = useTranslations(currentLang as keyof typeof languageList)
 ---
 
-<SectionComponent id="projects" title="Proyectos" icon={true}>
+<SectionComponent id="projects" title={translateLabels('nav.projects')} icon={true}>
     {
         allProjects.map((project) => {
             const { slug, data, body } = project;
