@@ -10,8 +10,9 @@ import SelectLanguage from "./SelectLanguage.astro";
 ---
 
 <header class="fixed top-0 w-full z-30">
+    <!-- Menu Desktop -->
     <ul
-        class="flex justify-center gap-1 md:gap-4 h-14 align-middle items-center max-w-full bg-zinc-500/30 dark:bg-zinc-100/5 backdrop-blur-md"
+        class="hidden md:flex justify-center gap-1 md:gap-4 h-14 align-middle items-center max-w-full bg-zinc-500/30 dark:bg-zinc-100/5 backdrop-blur-md"
     >
         <ButtonList href="#">{translateLabels('nav.home')}</ButtonList>
         <ButtonList href="#projects">{translateLabels('nav.projects')}</ButtonList>
@@ -19,4 +20,120 @@ import SelectLanguage from "./SelectLanguage.astro";
         <ButtonList href="#formacion">{translateLabels('nav.education')}</ButtonList>
         <SelectLanguage />
     </ul>
+
+    <!-- Header Mobile con botón hamburguesa -->
+    <div class="flex md:hidden justify-between items-center h-14 px-4 bg-zinc-500/30 dark:bg-zinc-100/5 backdrop-blur-md">
+        <div class="text-lg font-bold dark:text-white">Yoan Santiago</div>
+        <button 
+            id="mobile-menu-button"
+            class="p-2 rounded-md hover:bg-zinc-600/50 transition-colors duration-200"
+            aria-label="Abrir menú"
+        >
+            <svg id="hamburger-icon" class="w-6 h-6 dark:text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" class="w-6 h-6 dark:text-white hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Menu Mobile (inicialmente oculto) -->
+    <ul
+        id="mobile-menu"
+        class="flex-col md:hidden justify-center gap-1 md:gap-4 py-4 align-middle items-center max-w-full bg-zinc-500/30 dark:bg-zinc-100/5 backdrop-blur-md transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out hidden"
+    >
+        <ButtonList href="#">{translateLabels('nav.home')}</ButtonList>
+        <ButtonList href="#projects">{translateLabels('nav.projects')}</ButtonList>
+        <ButtonList href="#about">{translateLabels('nav.about')}</ButtonList>
+        <ButtonList href="#formacion">{translateLabels('nav.education')}</ButtonList>
+        <SelectLanguage />
+    </ul>
+
+    <!-- Overlay para cerrar menu -->
+    <div 
+        id="mobile-menu-overlay"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-[-1]"
+    ></div>
 </header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const menuItems = mobileMenu?.querySelectorAll('a');
+        
+        let isMenuOpen = false;
+        
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                // Mostrar menú
+                mobileMenu?.classList.remove('hidden');
+                mobileMenuOverlay?.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    mobileMenu?.classList.remove('-translate-y-full', 'opacity-0');
+                    mobileMenu?.classList.add('translate-y-0', 'opacity-100', 'flex');
+                }, 10);
+                
+                // Cambiar iconos
+                hamburgerIcon?.classList.add('hidden', 'rotate-90');
+                closeIcon?.classList.remove('hidden');
+                closeIcon?.classList.add('rotate-0');
+                
+                // Prevenir scroll del body
+                document.body.style.overflow = 'hidden';
+                
+            } else {
+                // Ocultar menú
+                mobileMenu?.classList.remove('translate-y-0', 'opacity-100', 'flex');
+                mobileMenu?.classList.add('-translate-y-full', 'opacity-0');
+                
+                setTimeout(() => {
+                    mobileMenu?.classList.add('hidden');
+                    mobileMenuOverlay?.classList.add('hidden');
+                }, 300);
+                
+                // Cambiar iconos
+                hamburgerIcon?.classList.remove('hidden', 'rotate-90');
+                closeIcon?.classList.add('hidden');
+                closeIcon?.classList.remove('rotate-0');
+                
+                // Restaurar scroll del body
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // Event listeners
+        mobileMenuButton?.addEventListener('click', toggleMenu);
+        mobileMenuOverlay?.addEventListener('click', toggleMenu);
+        
+        // Cerrar menu al hacer click en enlaces
+        menuItems?.forEach(item => {
+            item.addEventListener('click', () => {
+                if (isMenuOpen) {
+                    toggleMenu();
+                }
+            });
+        });
+        
+        // Cerrar menu con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isMenuOpen) {
+                toggleMenu();
+            }
+        });
+        
+        // Cerrar menu al cambiar a desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768 && isMenuOpen) {
+                toggleMenu();
+            }
+        });
+    });
+</script>
