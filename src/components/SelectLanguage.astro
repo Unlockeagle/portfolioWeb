@@ -1,45 +1,55 @@
 ---
 const currentLang = Astro.currentLocale || "es";
-const currentUrl = Astro.url.pathname;
+const currentPath = Astro.url.pathname;
+
+// Generar URLs para cada idioma
+function generateLanguageUrl(lang: string, currentPath: string): string {
+  // Remover idioma actual de la URL
+  const pathWithoutLang = currentPath.replace(/^\/(es|en|it)(\/.*)?$/, '$2') || '/';
+  
+  if (lang === 'es') {
+    // Español como idioma por defecto (sin prefijo)
+    return pathWithoutLang;
+  } else {
+    // Otros idiomas con prefijo
+    return `/${lang}${pathWithoutLang}`;
+  }
+}
+
+const esUrl = generateLanguageUrl('es', currentPath);
+const enUrl = generateLanguageUrl('en', currentPath);
+const itUrl = generateLanguageUrl('it', currentPath);
 ---
 
-<form class="max-w-sm">
-	<select
-		name="language"
-		id="select-language"
-		class="block w-full px-3 py-2 bg-purple-900 rounded-2xl text-heading text-sm focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+<div class="flex gap-2">
+	<a 
+		href={esUrl}
+		class={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+			currentLang === 'es' 
+				? 'bg-purple-600 text-white' 
+				: 'bg-purple-900/50 text-purple-200 hover:bg-purple-700 hover:text-white'
+		}`}
 	>
-		<option selected value={currentLang}>{currentLang.toUpperCase()}</option>
-		<option value="es">ES</option>
-		<option value="en">EN</option>
-		<option value="it">IT</option>
-	</select>
-</form>
-
-<script>
-	const select = document.getElementById('select-language') as HTMLSelectElement;
-	
-	select?.addEventListener('change', function(e) {
-		const selectedLang = (e.target as HTMLSelectElement).value;
-		const currentPath = window.location.pathname;
-		
-		// Remover el idioma actual de la URL
-		const pathWithoutLang = currentPath.replace(/^\/(es|en|it)(\/|$)/, '/');
-		
-		// Construir nueva URL
-		let newUrl;
-		if (selectedLang === 'es') {
-			// Español como idioma por defecto (sin prefijo)
-			newUrl = pathWithoutLang === '/' ? '/' : pathWithoutLang;
-		} else {
-			// Otros idiomas con prefijo
-			newUrl = `/${selectedLang}${pathWithoutLang}`;
-		}
-		
-		// Limpiar dobles barras
-		newUrl = newUrl.replace(/\/+/g, '/');
-		
-		// Redirigir
-		window.location.href = newUrl;
-	});
-</script>
+		ES
+	</a>
+	<a 
+		href={enUrl}
+		class={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+			currentLang === 'en' 
+				? 'bg-purple-600 text-white' 
+				: 'bg-purple-900/50 text-purple-200 hover:bg-purple-700 hover:text-white'
+		}`}
+	>
+		EN
+	</a>
+    	<a 
+		href={itUrl}
+		class={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+			currentLang === 'it' 
+				? 'bg-purple-600 text-white' 
+				: 'bg-purple-900/50 text-purple-200 hover:bg-purple-700 hover:text-white'
+		}`}
+	>
+		IT
+	</a>
+</div>
