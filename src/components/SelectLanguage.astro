@@ -1,0 +1,45 @@
+---
+const currentLang = Astro.currentLocale || "es";
+const currentUrl = Astro.url.pathname;
+---
+
+<form class="max-w-sm">
+	<select
+		name="language"
+		id="select-language"
+		class="block w-full px-3 py-2 bg-purple-900 rounded-2xl text-heading text-sm focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
+	>
+		<option selected value={currentLang}>{currentLang.toUpperCase()}</option>
+		<option value="es">ES</option>
+		<option value="en">EN</option>
+		<option value="it">IT</option>
+	</select>
+</form>
+
+<script>
+	const select = document.getElementById('select-language') as HTMLSelectElement;
+	
+	select?.addEventListener('change', function(e) {
+		const selectedLang = (e.target as HTMLSelectElement).value;
+		const currentPath = window.location.pathname;
+		
+		// Remover el idioma actual de la URL
+		const pathWithoutLang = currentPath.replace(/^\/(es|en|it)(\/|$)/, '/');
+		
+		// Construir nueva URL
+		let newUrl;
+		if (selectedLang === 'es') {
+			// Español como idioma por defecto (sin prefijo)
+			newUrl = pathWithoutLang === '/' ? '/' : pathWithoutLang;
+		} else {
+			// Otros idiomas con prefijo
+			newUrl = `/${selectedLang}${pathWithoutLang}`;
+		}
+		
+		// Limpiar dobles barras
+		newUrl = newUrl.replace(/\/+/g, '/');
+		
+		// Redirigir
+		window.location.href = newUrl;
+	});
+</script>

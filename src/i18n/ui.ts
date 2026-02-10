@@ -1,6 +1,7 @@
 export const languageList = {
     'es': 'Español',
-    'it': "Italiano"
+    'it': "Italiano",
+    'en': "Ingles"
 }
 
 export const labels = {
@@ -19,5 +20,13 @@ export const labels = {
         'nav.education': 'Istruzione',
         'home.description': 'Sono uno sviluppatore web e adoro creare esperienze digitali solide e coinvolgenti.',
         'home.about': 'Utilizzo tecnologie come JavaScript, ReactJS, Node.js, ExpressJS, MongoDB, HTML, CSS e CMS come WordPress, PrestaShop e Joomla per creare applicazioni con interfacce moderne e sistemi backend efficienti. Mi piace combinare codice pulito e design funzionale.'
+    },
+    en: {
+        'nav.home': 'Home',
+        'nav.projects': 'Projects',
+        'nav.about': 'about',
+        'nav.education': 'Education',
+        'home.description': 'I am a web developer and I love creating solid and engaging digital experiences.',
+        'home.about': 'I work with technologies such as JavaScript, ReactJS, Node.js, ExpressJS, MongoDB, HTML, CSS, and CMSs like WordPress, PrestaShop, and Joomla to build applications with modern interfaces and efficient backend systems. I enjoy combining clean code with functional design.'
     }
 }

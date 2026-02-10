@@ -6,6 +6,7 @@ const currentLang = Astro.currentLocale || 'es';
 const translateLabels = useTranslations(currentLang as keyof typeof languageList)
 
 import ButtonList from "./ButtonList.astro";
+import SelectLanguage from "./SelectLanguage.astro";
 ---
 
 <header class="fixed top-0 w-full z-30">
@@ -16,5 +17,6 @@ import ButtonList from "./ButtonList.astro";
         <ButtonList href="#projects">{translateLabels('nav.projects')}</ButtonList>
         <ButtonList href="#about">{translateLabels('nav.about')}</ButtonList>
         <ButtonList href="#formacion">{translateLabels('nav.education')}</ButtonList>
+        <SelectLanguage />
     </ul>
 </header>
