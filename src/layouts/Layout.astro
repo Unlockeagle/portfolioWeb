@@ -16,7 +16,25 @@ const currentLang = Astro.currentLocale || "es";
 		<meta name="generator" content={Astro.generator} />
 
 		<title>Santiago Dev</title>
+		<meta
+			name="description"
+			content="Santiago Dev is a passionate web developer specializing in frontend development. With a strong focus on creating visually appealing and user-friendly websites, Santiago combines creativity with technical expertise to deliver exceptional digital experiences."
+		/>
 
+		<meta property="og:title" content="Santiago Dev" />
+		<meta
+			property="og:description"
+			content="Santiago Dev is a passionate web developer specializing in frontend development. With a strong focus on creating visually appealing and user-friendly websites, Santiago combines creativity with technical expertise to deliver exceptional digital experiences."
+		/>
+		<meta property="og:image" content="/favicon.webp" />
+		<meta property="og:url" content="https://santiagodev.com" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Santiago Dev" />
+		<meta
+			name="twitter:description"
+			content="Santiago Dev is a passionate web developer specializing in frontend development. With a strong focus on creating visually appealing and user-friendly websites, Santiago combines creativity with technical expertise to deliver exceptional digital experiences."
+		/>
+		<meta name="twitter:image" content="/favicon.webp" />
 		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 		<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 	</head>
