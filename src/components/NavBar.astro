@@ -24,18 +24,21 @@ import SelectLanguage from "./SelectLanguage.astro";
     <!-- Header Mobile con botón hamburguesa -->
     <div class="flex md:hidden justify-between items-center h-14 px-4 bg-zinc-500/30 dark:bg-zinc-100/5 backdrop-blur-md">
         <div class="text-lg font-bold dark:text-white">Yoan Santiago</div>
-        <button 
-            id="mobile-menu-button"
-            class="p-2 rounded-md hover:bg-zinc-600/50 transition-colors duration-200"
-            aria-label="Abrir menú"
-        >
-            <svg id="hamburger-icon" class="w-6 h-6 dark:text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <svg id="close-icon" class="w-6 h-6 dark:text-white hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
+        <div class="flex items-center gap-2">
+            <SelectLanguage />
+            <button 
+                id="mobile-menu-button"
+                class="p-2 rounded-md hover:bg-zinc-600/50 transition-colors duration-200"
+                aria-label="Abrir menú"
+            >
+                <svg id="hamburger-icon" class="w-6 h-6 dark:text-white transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 dark:text-white hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
     </div>
 
     <!-- Menu Mobile (inicialmente oculto) -->
@@ -47,10 +50,7 @@ import SelectLanguage from "./SelectLanguage.astro";
         <ButtonList href="#projects">{translateLabels('nav.projects')}</ButtonList>
         <ButtonList href="#about">{translateLabels('nav.about')}</ButtonList>
         <ButtonList href="#formacion">{translateLabels('nav.education')}</ButtonList>
-        <SelectLanguage />
     </ul>
-
-    <!-- Overlay para cerrar menu -->
     <div 
         id="mobile-menu-overlay"
         class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-[-1]"

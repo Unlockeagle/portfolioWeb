@@ -21,13 +21,12 @@ const languages = [
 const current = languages.find(l => l.code === currentLang) ?? languages[0];
 ---
 
-<div class="lang-dropdown" id="lang-dropdown">
+<div class="lang-dropdown">
   <button
     class="lang-trigger"
     aria-haspopup="listbox"
     aria-expanded="false"
     aria-label="Select language"
-    id="lang-trigger"
   >
     <!-- Globe icon -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="globe-icon" aria-hidden="true">
@@ -44,7 +43,7 @@ const current = languages.find(l => l.code === currentLang) ?? languages[0];
     </svg>
   </button>
 
-  <ul class="lang-menu" role="listbox" aria-label="Languages" id="lang-menu">
+  <ul class="lang-menu" role="listbox" aria-label="Languages">
     {languages.map(({ code, label, flag, name, url }) => (
       <li role="option" aria-selected={currentLang === code}>
         <a
@@ -203,27 +202,41 @@ const current = languages.find(l => l.code === currentLang) ?? languages[0];
 </style>
 
 <script>
-  const dropdown = document.getElementById('lang-dropdown');
-  const trigger = document.getElementById('lang-trigger');
-  const menu = document.getElementById('lang-menu');
+  document.querySelectorAll<HTMLElement>('.lang-dropdown').forEach(dropdown => {
+    const trigger = dropdown.querySelector<HTMLElement>('.lang-trigger');
 
-  trigger?.addEventListener('click', () => {
-    const isOpen = dropdown?.classList.toggle('open');
-    trigger.setAttribute('aria-expanded', String(isOpen));
+    trigger?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+
+      // cerrar otros dropdowns abiertos
+      document.querySelectorAll<HTMLElement>('.lang-dropdown.open').forEach(other => {
+        if (other !== dropdown) {
+          other.classList.remove('open');
+          other.querySelector<HTMLElement>('.lang-trigger')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
   });
 
   document.addEventListener('click', (e) => {
-    if (!dropdown?.contains(e.target as Node)) {
-      dropdown?.classList.remove('open');
-      trigger?.setAttribute('aria-expanded', 'false');
-    }
+    document.querySelectorAll<HTMLElement>('.lang-dropdown.open').forEach(dropdown => {
+      if (!dropdown.contains(e.target as Node)) {
+        dropdown.classList.remove('open');
+        dropdown.querySelector<HTMLElement>('.lang-trigger')?.setAttribute('aria-expanded', 'false');
+      }
+    });
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      dropdown?.classList.remove('open');
-      trigger?.setAttribute('aria-expanded', 'false');
-      trigger?.focus();
+      document.querySelectorAll<HTMLElement>('.lang-dropdown.open').forEach(dropdown => {
+        dropdown.classList.remove('open');
+        const trigger = dropdown.querySelector<HTMLElement>('.lang-trigger');
+        trigger?.setAttribute('aria-expanded', 'false');
+        trigger?.focus();
+      });
     }
   });
 </script>
