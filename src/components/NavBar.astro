@@ -14,7 +14,7 @@ import SelectLanguage from "./SelectLanguage.astro";
     <ul
         class="hidden md:flex justify-center gap-1 md:gap-4 h-14 align-middle items-center max-w-full bg-zinc-500/30 dark:bg-zinc-100/5 backdrop-blur-md"
     >
-        <ButtonList href="#">{translateLabels('nav.home')}</ButtonList>
+        <ButtonList href="#inicio">{translateLabels('nav.home')}</ButtonList>
         <ButtonList href="#projects">{translateLabels('nav.projects')}</ButtonList>
         <ButtonList href="#about">{translateLabels('nav.about')}</ButtonList>
         <ButtonList href="#formacion">{translateLabels('nav.education')}</ButtonList>
@@ -43,7 +43,7 @@ import SelectLanguage from "./SelectLanguage.astro";
         id="mobile-menu"
         class="flex-col md:hidden justify-center gap-1 md:gap-4 py-4 align-middle items-center max-w-full bg-zinc-500/30 dark:bg-zinc-100/5 backdrop-blur-md transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out hidden"
     >
-        <ButtonList href="#">{translateLabels('nav.home')}</ButtonList>
+        <ButtonList href="#inicio">{translateLabels('nav.home')}</ButtonList>
         <ButtonList href="#projects">{translateLabels('nav.projects')}</ButtonList>
         <ButtonList href="#about">{translateLabels('nav.about')}</ButtonList>
         <ButtonList href="#formacion">{translateLabels('nav.education')}</ButtonList>
@@ -135,5 +135,45 @@ import SelectLanguage from "./SelectLanguage.astro";
                 toggleMenu();
             }
         });
+    });
+</script>
+
+<script>
+    // Scroll spy: resalta el botón de la sección visible
+    const sectionIds = ['inicio', 'projects', 'about', 'formacion'];
+
+    const navItems = document.querySelectorAll<HTMLElement>('[data-nav-href]');
+
+    const activeClasses = ['bg-gradient-to-b', 'from-violet-600', 'to-violet-900', 'outline-amber-50', '!outline-1'];
+
+    function setActive(sectionId: string) {
+        navItems.forEach(item => {
+            const href = item.getAttribute('data-nav-href');
+            const matches = href === `#${sectionId}`;
+            if (matches) {
+                item.classList.add(...activeClasses);
+            } else {
+                item.classList.remove(...activeClasses);
+            }
+        });
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActive(entry.target.id);
+                }
+            });
+        },
+        {
+            rootMargin: '-40% 0px -55% 0px',
+            threshold: 0,
+        }
+    );
+
+    sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
     });
 </script>

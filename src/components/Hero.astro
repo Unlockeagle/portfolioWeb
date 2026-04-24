@@ -2,6 +2,7 @@
 import type { languageList } from "../i18n/ui";
 import { useTranslations } from "../i18n/utils";
 
+import { Image } from "astro:assets";
 import ButtonLinks from "./ButtonLinks.astro";
 
 import GitHubIcon from "../assets/svg/GitHubIcon.astro";
@@ -11,16 +12,26 @@ import MailIcon from "./icons/Mail-icon.astro";
 const currentLang = Astro.currentLocale || 'es';
 
 const translateLabels = useTranslations(currentLang as keyof typeof languageList)
+
+const cvFiles: Record<string, { href: string; filename: string } | null> = {
+  es: { href: '/cv-es.pdf', filename: 'YoanSantiago-CV-ES.pdf' },
+  it: { href: '/cv-it.pdf', filename: 'YoanSantiago-CV-IT.pdf' },
+  en: null, // not available yet
+};
+const cv = cvFiles[currentLang] ?? cvFiles['es'];
 ---
 
-<div class="px-2 mt-22 flex flex-col items-center gap-4">
+<div id="inicio" class="px-2 mt-22 flex flex-col items-center gap-4">
 	<div
 		class="flex flex-col md:flex-row justify-center items-center md:items-end-safe gap-4 md:gap-8 text-center"
 	>
-		<img
+		<Image
 			class="rounded-full w-42 md:w-52 h-auto"
 			src="/profile_200px.avif"
-			alt="Profile Photo Yoan Santiago"
+			alt="Yoan Santiago - Web Developer"
+			width={200}
+			height={200}
+			loading="eager"
 		/>
 		<div class="flex flex-col text-center md:text-start md:w-2/3 gap-4 md:gap-8">
 			<h1 class="text-4xl font-bold">Yoan Santiago</h1>
@@ -44,11 +55,32 @@ const translateLabels = useTranslations(currentLang as keyof typeof languageList
 				>
 					<MailIcon class="size-5" />
 				</ButtonLinks>
-				<a
-					class="flex gap-1 text-sm text-zinc-100 bg-gradient-to-b from-violet-600 to-violet-900 px-4 py-2 rounded-4xl cursor-pointer items-center outline outline-transparent hover:outline hover:outline-amber-50"
-					href="/santiago-cv.pdf"
-					download="">CV</a
-				>
+				{cv ? (
+					<a
+						class="flex gap-1 text-sm text-zinc-100 bg-gradient-to-b from-violet-600 to-violet-900 px-4 py-2 rounded-4xl cursor-pointer items-center outline outline-transparent hover:outline hover:outline-amber-50"
+						href={cv.href}
+						download={cv.filename}
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;" aria-hidden="true">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+							<polyline points="7 10 12 15 17 10"/>
+							<line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						CV
+					</a>
+				) : (
+					<span
+						class="flex gap-1 text-sm text-zinc-400 bg-zinc-800/50 px-4 py-2 rounded-4xl items-center cursor-not-allowed opacity-60"
+						title="CV not available in this language yet"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;" aria-hidden="true">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+							<polyline points="7 10 12 15 17 10"/>
+							<line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						CV
+					</span>
+				)}
 			</div>
 		</div>
 	</div>

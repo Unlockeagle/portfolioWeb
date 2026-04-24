@@ -2,23 +2,26 @@
 import SectionComponent from "./SectionComponent.astro";
 import ProjectCard from "./ProjectCard.astro";
 
-import { getCollection, getEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 const allProjects = await getCollection("projects");
 import type { languageList } from "../i18n/ui";
 import { useTranslations } from "../i18n/utils";
+import { projectTranslations } from "../i18n/ui";
 
-const currentLang = Astro.currentLocale || 'es'
+const currentLang = (Astro.currentLocale || 'es') as keyof typeof projectTranslations[string];
 const translateLabels = useTranslations(currentLang as keyof typeof languageList)
 ---
 
 <SectionComponent id="projects" title={translateLabels('nav.projects')} icon={true}>
     {
         allProjects.map((project) => {
-            const { slug, data, body } = project;
-            const { title, description, img, technologies, github, vercel } = data;
-           
-            
+            const { slug, data } = project;
+            const { img, technologies, github, vercel } = data;
+
+            const translation = projectTranslations[slug]?.[currentLang] ?? projectTranslations[slug]?.['es'];
+            const title = translation?.title ?? data.title;
+            const description = translation?.description ?? data.description;
 
             return <ProjectCard title={title} img={img} description={description} technologies={technologies} github={github} vercel={vercel} />;
         })
