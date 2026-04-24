@@ -59,7 +59,8 @@ const cv = cvFiles[currentLang] ?? cvFiles['es'];
 					<a
 						class="flex gap-1 text-sm text-zinc-100 bg-gradient-to-b from-violet-600 to-violet-900 px-4 py-2 rounded-4xl cursor-pointer items-center outline outline-transparent hover:outline hover:outline-amber-50"
 						href={cv.href}
-						download={cv.filename}
+						target="_blank"
+						rel="noopener noreferrer"
 					>
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;" aria-hidden="true">
 							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
